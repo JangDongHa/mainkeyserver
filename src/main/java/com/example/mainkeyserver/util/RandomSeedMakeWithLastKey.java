@@ -3,8 +3,8 @@ package com.example.mainkeyserver.util;
 import com.example.mainkeyserver.domain.KeyLog;
 import com.example.mainkeyserver.domain.KeyLogRepository;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Random;
 
 @Setter
@@ -28,7 +28,7 @@ public class RandomSeedMakeWithLastKey implements RandomSeedMaker {
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public String getLastIndexKey(KeyLogRepository keyLogRepository){
         long lastKeyIndex = keyLogRepository.count() - 1;
         if (lastKeyIndex == -1){
