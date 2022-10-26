@@ -22,7 +22,7 @@ public class RandomSeedMakeWithLastKey implements RandomSeedMaker {
     public void makeSeed() {
         if (hasNoKeyData)
             setSeedWithBasicRule();
-        else{
+        if (!hasNoKeyData){
             int seed = stringToInt(lastKey);
             random.setSeed(seed);
         }
